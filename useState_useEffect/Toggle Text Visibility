@@ -1,0 +1,16 @@
+import React,{useState} from 'react';
+
+
+const Visibility = () => {
+
+  const [toggle,setToggle] = useState(true);
+
+  return (
+    <div>
+      {toggle?<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, placeat!</p>:""}
+      <button onClick={()=>setToggle(!toggle)}>Toggle Visibilty</button>
+    </div>
+  )
+}
+
+export default Visibility;
