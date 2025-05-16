@@ -1,0 +1,41 @@
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+
+const LiveSearch = () => {
+
+  const[users,setUsers] = useState([]);
+  const[filtered,setFiltered] = useState([]);
+  const[loading,setLoading] = useState(true);
+  const[searchTerm,setSearchTerm] = useState("");
+
+  
+
+  useEffect(()=>{
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res=>res.json())
+      .then(data=>{
+        setUsers(data);
+        setFiltered(data);
+        setLoading(false);
+      })
+  },[])
+
+  useEffect(()=>{
+    const results = users.filter(user=>
+      user.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFiltered(results);
+  },[searchTerm,users]);
+
+
+
+  return (
+    <div style={{padding:"20px"}}>
+      <h2>Live User Search</h2>
+      <input type="text" placeholder='Search by name...' value={searchTerm} onChange={e=>setSearchTerm(e.target.value)} style={{padding:"8px", width:"250px", marginBottom:"20px"}} />
+      {loading?(<p>Loading Users...</p>):filtered.length===0?(<p>No user found.</p>):(<ul>{filtered.map(user=>(<li key={user.id}>{user.name}</li>))}</ul>)}
+    </div>
+  )
+}
+
+export default LiveSearch
