@@ -1,0 +1,12 @@
+import React, { useState } from 'react'
+
+const SwitchTheme = () => {
+  const [theme,setTheme] = useState(true);
+  return (
+    <div style={{width:"200px", height:"200px", backgroundColor:theme?"white":"black", color:"black"}}>
+      <button onClick={()=>setTheme(prev=>!prev)}>Toggle Theme</button>
+    </div>
+  )
+}
+
+export default SwitchTheme
