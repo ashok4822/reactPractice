@@ -1,0 +1,56 @@
+import React, { useEffect, useRef, useState } from 'react'
+
+const Todo = () => {
+  const[todos,setTodos] = useState([]);
+  const[todo,setTodo] = useState("");
+
+  const firstRender = useRef(true);
+
+  function handleSubmit(e){
+    e.preventDefault();
+    if(!todo.trim()) return;
+    setTodos(prev=>([...prev,todo]));
+    setTodo("");
+  }
+
+  function handleRemove(id){
+    let res = todos.filter((item,index)=>index!==id);
+    setTodos(res);
+  }
+
+  useEffect(()=>{
+    let response = localStorage.getItem("todos1");
+    if(response){
+      setTodos(JSON.parse(response));
+    }
+  },[]);
+  
+  useEffect(()=>{
+    if(firstRender.current){
+      firstRender.current = false;
+      return;
+    }
+    localStorage.setItem("todos1",JSON.stringify(todos));
+  },[todos]);
+
+
+  return (
+    <div>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <input type="text" value={todo} placeholder='Enter a task...' onChange={(e)=>setTodo(e.target.value)}  />
+          <button type='submit'>Add</button>
+        </form>
+        <br />
+        {todos.map((item,index)=>(
+          <div key={index} style={{display:"flex", gap:"10px", paddingBottom:"10px", alignItems:"center"}}>
+            <div>{item}</div>
+            <button onClick={()=>handleRemove(index)}>Remove</button>
+          </div>
+          ))}
+      </div>
+    </div>
+  )
+}
+
+export default Todo
