@@ -1,0 +1,35 @@
+import React, { useEffect, useState } from 'react';
+import axios from "axios";
+
+const FetchUserData = () => {
+
+  const[data,setData] = useState([]);
+
+  async function dataFetch(){
+    let response = await axios.get("https://jsonplaceholder.typicode.com/users");
+    console.log(response.data)
+    if(response.data){
+      setData(response.data);
+    }
+  }
+
+  useEffect(()=>{
+    dataFetch();
+  },[]);
+
+
+  return (
+    <div>
+      {data.map((item,index)=>{
+        return(
+          <div key={index}>
+            <p>{item.name}</p>
+            <p>{item.email}</p>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+export default FetchUserData
