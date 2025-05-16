@@ -1,0 +1,29 @@
+import React, { useEffect, useState } from 'react'
+
+const AutoSave = () => {
+  const[data,setData] = useState("");
+  const[saveData,setSaveData] = useState("");
+
+  useEffect(()=>{
+    let timer = setTimeout(() => {
+      localStorage.setItem("saveData",JSON.stringify(data))
+      let result = localStorage.getItem("saveData");
+      setSaveData(result);
+    }, 4000);
+
+    return ()=> clearTimeout(timer);
+  },[data]);
+
+
+  
+  return (
+    <div>
+      <label>Enter text: </label>
+      <input type="text" value={data} onChange={(e)=>setData(e.target.value)} /> <br /> <br />
+      <p>Data saved: </p>
+      <p>{saveData}</p>
+    </div>
+  )
+}
+
+export default AutoSave;
