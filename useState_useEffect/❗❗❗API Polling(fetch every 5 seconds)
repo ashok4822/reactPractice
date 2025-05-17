@@ -1,0 +1,42 @@
+import React, { useEffect, useState } from 'react'
+
+const ApiPolling = () => {
+  const[post,setPost] = useState(null);
+  const[time,setTime] = useState(new Date().toLocaleTimeString());
+
+  useEffect(()=>{
+    const fetchPost=()=>{
+      fetch('https://jsonplaceholder.typicode.com/posts/1')
+        .then(res=>res.json())
+        .then(data=>{
+          setPost(data);
+          setTime(new Date().toLocaleTimeString());
+        })
+        .catch(error=>console.error("Error fetch post: ",error))
+    }
+
+    fetchPost();
+
+    const intervalId = setInterval(fetchPost,5000)
+
+    return ()=> clearInterval(intervalId);
+  },[]);
+
+  
+  return (
+    <div style={{padding:'20px'}}>
+      <h2>API polling every 5sec</h2>
+      <p><strong>Last updated:</strong>{time}</p>
+      {post?(
+        <div>
+          <h3>{post.title}</h3>
+          <p>{post.body}</p>
+        </div>
+      ):(
+        <p>Loading post...</p>
+      )}
+    </div>
+  )
+}
+
+export default ApiPolling
