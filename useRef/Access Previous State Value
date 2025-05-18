@@ -1,0 +1,19 @@
+import React, { useEffect, useRef, useState } from 'react'
+
+const Previous = () => {
+  const[count,setCount] = useState(0);
+  const previousRef = useRef(0); 
+
+  useEffect(()=>{
+    previousRef.current = count;
+  },[count]);
+  return (
+    <div>
+      <p>Current: {count}</p>
+      <p>Previous: {previousRef.current}</p>
+      <button onClick={()=>setCount(prev=>prev+1)}>Increment</button>
+    </div>
+  )
+}
+
+export default Previous
