@@ -1,0 +1,16 @@
+import React, { useRef } from 'react'
+
+const ScrollDemo = () => {
+  const bottomRef = useRef();
+  return (
+    <div>
+      <button onClick={()=>bottomRef.current.scrollIntoView({behaviour:"smooth"})}>
+        Scroll to Bottom
+      </button>
+      <div style={{height:"1000px"}}/>
+      <div ref={bottomRef}>You reached the bottom</div>
+    </div>
+  )
+}
+
+export default ScrollDemo
