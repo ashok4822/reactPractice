@@ -1,0 +1,21 @@
+import React, { useState } from 'react'
+
+const Tabs = () => {
+  const [content,setContent] = useState("Home");
+  let items = ["Home","About","Contact"];
+
+  const data= {
+    Home:"Welcome Home",
+    About:"About us here",
+    Contact:"Contact info below"
+  }
+
+  return (
+    <div>
+      {items.map((item,index)=><button key={index} onClick={()=>setContent(item)}>{item}</button>)}
+      <p>{data[content]}</p>
+    </div>
+  )
+}
+
+export default Tabs
