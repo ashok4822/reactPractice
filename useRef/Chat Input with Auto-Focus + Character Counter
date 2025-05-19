@@ -1,0 +1,31 @@
+import React, { useEffect, useRef, useState } from 'react'
+
+const ChatInput = () => {
+  const[input,setInput] = useState("");
+  const inputRef = useRef();
+
+  function handleChange(e){
+    setInput(e.target.value);
+  }
+
+  function handleSubmit(e){
+    e.preventDefault();
+    setInput("");
+  }
+
+  useEffect(()=>{
+    inputRef.current.focus();
+  },[])
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input ref={inputRef} value={input} type="text" onChange={handleChange}/>
+        <button type='submit'>Submit</button>
+        <p>{input.length}</p>
+      </form>
+    </div>
+  )
+}
+
+export default ChatInput
