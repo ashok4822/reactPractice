@@ -1,0 +1,20 @@
+import React, { useEffect, useState } from 'react'
+
+const ThemeToggle = () => {
+  const[theme,setTheme] = useState(()=>localStorage.getItem("theme")||false);
+
+  useEffect(()=>{
+    localStorage.setItem("theme",theme);
+
+    document.body.style.backgroundColor = (theme?"#333":"#fff");
+    document.body.style.color = (theme?"#fff":"#333")
+
+  },[theme]);
+  return (
+    <div>
+      <button onClick={()=>setTheme(prev=>!prev)}>Toggle theme</button>
+    </div>
+  )
+}
+
+export default ThemeToggle
