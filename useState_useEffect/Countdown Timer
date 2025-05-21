@@ -6,11 +6,11 @@ const CountdownTimer = () => {
   useEffect(()=>{
     if(count<=0)return;
     
-      let timer = setInterval(()=>{
+      let timer = setTimeout(()=>{
         setCount(prev=>prev-1);
       },1000);
 
-    return ()=>clearInterval(timer);
+    return ()=>clearTimeout(timer);
   },[count]);
   return (
     <div>
