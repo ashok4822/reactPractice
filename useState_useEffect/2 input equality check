@@ -1,0 +1,31 @@
+import React, { useState } from 'react'
+
+const Counter = () => {
+  const[data,setData] = useState({});
+
+  function handleChange(e){
+    let name = e.target.name;
+    let value = e.target.value;
+
+    setData(prev=>({...prev,[name]:value}));
+  }
+
+  function checkEquality(){
+    if(data.name1===data.name2){
+      console.log("Both inputs are equal");
+    }else{
+      console.log("not equal");
+    }
+  }
+
+
+  return (
+    <div>
+      <input name='name1' type="text" value={data.name1||""} onChange={handleChange} /> <br />
+      <input name='name2' type="text" value={data.name2||""} onChange={handleChange}/> <br />
+      <button onClick={checkEquality}>Check</button>
+    </div>
+  )
+}
+
+export default Counter
