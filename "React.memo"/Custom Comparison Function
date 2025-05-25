@@ -1,0 +1,10 @@
+const Title = React.memo(({text})=>{
+  console.log("Title rendered");
+  return (
+    <div>
+      <h1>{text}</h1>
+    </div>
+  )
+}, (prevProps,nextProps)=>{
+  prevProps.text.toLowerCase() === nextProps.text.toLowerCase() // fine tuning
+});
