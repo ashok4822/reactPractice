@@ -1,0 +1,23 @@
+import React, { useMemo, useState } from 'react'
+
+const Profile = React.memo(({user})=>{
+  console.log("Profile rendered");
+  return <div>{user.name}</div>
+});
+
+const App1 = () => {
+  const[count,setCount] = useState(0);
+  // const user = {name:"John"}; // recreated every render
+
+  const user = useMemo(()=>({name:"John"}),[]);
+
+  return (
+    <div>
+      <Profile user={user}/>
+      <button onClick={setCount(count+1)}>Increment</button>
+    </div>
+  )
+}
+
+export default App1
+
