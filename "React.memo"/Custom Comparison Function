@@ -8,3 +8,4 @@ const Title = React.memo(({text})=>{
 }, (prevProps,nextProps)=>{
   prevProps.text.toLowerCase() === nextProps.text.toLowerCase() // fine tuning
 });
+
