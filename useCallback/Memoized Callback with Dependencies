@@ -1,0 +1,26 @@
+import React, { useCallback, useEffect, useState } from 'react'
+
+const Timer = ({interval=1}) => {
+  const[seconds,setSeconds] = useState(0);
+  
+  // const tick = ()=>{
+  //   setSeconds((prev)=>prev + interval);
+  // }
+
+  const tick = useCallback(()=>{
+    setSeconds((prev)=>prev + interval);
+  },[interval]);
+
+  useEffect(()=>{
+    const id = setInterval(tick,1000);
+    return ()=> clearInterval(id);
+  },[tick]);
+
+  return (
+    <div>
+      <h2>Seconds: {seconds}</h2>
+    </div>
+  )
+}
+
+export default Timer
