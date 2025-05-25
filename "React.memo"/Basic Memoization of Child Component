@@ -1,0 +1,32 @@
+import React, { useState } from 'react'
+
+// function Child({label}){
+//   console.log("Child Render");
+//   return(
+//     <div>
+//       <p>{label}</p>
+//     </div>
+//   )
+// }
+
+const Child = React.memo(function Child({label}){
+  console.log("Child Render");
+  return(
+    <div>
+      <p>{label}</p>
+    </div>
+  )
+})
+
+
+const Parent = () => {
+  const[count,setCount] = useState(0);
+  return (
+    <div>
+      <button onClick={()=>setCount(count+1)}>Increment</button>
+      <Child label="Static label"/>
+    </div>
+  )
+}
+
+export default Parent
