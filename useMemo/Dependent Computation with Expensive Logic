@@ -1,0 +1,29 @@
+import React, { useMemo, useState } from 'react'
+
+const MultiplyApp = () => {
+  const[count,setCount] = useState(1);
+  const[multiplier,setMultiplier] = useState(2);
+
+  const expensiveMultiply = ()=>{
+    console.log("Multiplying...");
+    let result = 0;
+    for(let i=0;i<1000000;i++){
+      result += count*multiplier;
+    }
+    return result;
+  };
+
+  // const result = expensiveMultiply();
+
+  const result = useMemo(()=>{return expensiveMultiply()},[count,multiplier]);
+
+  return (
+    <div>
+      <p>Result: {result}</p>
+      <button onClick={()=>setCount(count+1)}>Increment Count</button>
+      <button onClick={()=>setMultiplier(multiplier+1)}>Increment Multiplier</button>
+    </div>
+  )
+}
+
+export default MultiplyApp
