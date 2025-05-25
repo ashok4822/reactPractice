@@ -1,0 +1,25 @@
+import React, { useState } from 'react'
+
+const NormalChild = ({label})=>{
+  console.log("Normal Child rendered");
+  return <p>{label}</p>
+}
+
+const MemoizedChild = React.memo(({label})=>{
+  console.log("Memoized Child rendered");
+  return <p>{label}</p>
+});
+
+const Parent = () => {
+  const[count,setCount] = useState(0);
+
+  return (
+    <div>
+      <button onClick={()=>setCount(count+1)}>Increment</button>
+      <NormalChild label="I always render"/>
+      <MemoizedChild label="I only change when props change"/>
+    </div>
+  )
+}
+
+export default Parent
