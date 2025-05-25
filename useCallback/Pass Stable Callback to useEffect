@@ -1,0 +1,28 @@
+import React, { useCallback, useEffect, useState } from 'react'
+
+const DataFetcher = ({url}) => {
+  const[data,setData] = useState(null);
+
+  // const fetchData=()=>{
+  //   fetch(url)
+  //     .then((res)=>res.json())
+  //     .then(setData);
+  // };
+
+  const fetchData = useCallback(()=>{
+    fetch(url)
+      .then((res)=>res.json())
+      .then(setData)
+  },[url]);
+
+  useEffect(()=>{
+    fetchData();
+  },[fetchData]);
+  return (
+    <div>
+      <pre>{JSON.stringify(data,null,2)}</pre>;
+    </div>
+  )
+}
+
+export default DataFetcher
