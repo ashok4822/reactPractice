@@ -1,0 +1,20 @@
+import React, { useMemo, useState } from 'react'
+
+const DoubleCounter = () => {
+  const[number,setNumber] = useState(1);
+
+  // const double = number*2;
+
+  const double = useMemo(()=>{
+    return number*2;
+  },[number]);
+
+  return (
+    <div>
+      <input type="number" value={number} onChange={(e)=>setNumber(parseInt(e.target.value))} />
+      <p>Double: {double}</p>
+    </div>
+  )
+}
+
+export default DoubleCounter
