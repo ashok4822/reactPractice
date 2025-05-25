@@ -1,0 +1,35 @@
+import React, { useMemo, useState } from 'react'
+
+const users = [
+  {id:1,name:"Alice"},
+  {id:2,name:"Bob"},
+  {id:3,name:"Charlie"}
+];
+
+const UserList = () => {
+  const[filter,setFilter] = useState("");
+
+  // const filteredUsers = users.filter((user)=>
+  //   user.name.toLowerCase().includes(filter.toLowerCase())
+  // );
+
+
+  const filteredUsers = useMemo(()=>{
+    return users.filter((user)=>
+      user.name.toLowerCase().includes(filter.toLowerCase())
+    )
+  },[filter]);
+
+  return (
+    <div>
+      <input type="text" value={filter} onChange={(e)=> setFilter(e.target.value)} />
+      <ul>
+        {filteredUsers.map((user)=>(
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+export default UserList;
