@@ -1,0 +1,14 @@
+//Counter1.jsx
+import React, { useContext } from 'react';
+import { UserContext } from './context';
+
+const Counter1 = () => {
+  const user = useContext(UserContext);
+  return (
+    <div>
+      <h2>Welcome {user.name}</h2>
+    </div>
+  )
+}
+
+export default Counter1
