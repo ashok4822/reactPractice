@@ -1,0 +1,13 @@
+💡 Why Use Context API?
+
+| Problem                         | Context API Solution |
+| ------------------------------- | -------------------- |
+| Prop drilling                   | ✅ Avoided            |
+| Global state (e.g. theme, auth) | ✅ Easily shared      |
+| Cleaner component trees         | ✅ Less boilerplate   |
+
+
+⚠️ When Not to Use Context
+Avoid using it for frequently changing values (e.g., mouse position) — it can cause unnecessary re-renders.
+
+For large apps, consider Redux, Zustand, or Recoil if state logic becomes complex.
