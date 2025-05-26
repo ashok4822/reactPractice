@@ -1,0 +1,23 @@
+import React, {Suspense} from 'react'
+import {BrowserRouter,Routes,Route} from "react-router-dom";
+
+const Home = React.lazy(()=>import("./Home"));
+const About = React.lazy(()=>import("./About"));
+
+
+const App = () => {
+  return (
+    <div>
+      <BrowserRouter>
+        <Suspense fallback={<p>Loading page...</p>}>
+          <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/about" element={<About/>}/>
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </div>
+  )
+}
+
+export default App
