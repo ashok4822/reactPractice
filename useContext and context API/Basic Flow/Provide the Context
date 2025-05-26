@@ -1,0 +1,18 @@
+//Counter.jsx
+import React from 'react'
+import Counter1 from './Counter1';
+import {UserContext} from "./context";
+
+const Counter = () => {
+  const user = {name:"Ashok",role:"admin"};
+
+  return (
+    <div>
+      <UserContext.Provider value={user}>
+        <Counter1/>
+      </UserContext.Provider>
+    </div>
+  )
+}
+
+export default Counter
