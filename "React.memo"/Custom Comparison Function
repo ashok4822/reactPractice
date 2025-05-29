@@ -6,6 +6,6 @@ const Title = React.memo(({text})=>{
     </div>
   )
 }, (prevProps,nextProps)=>{
-  prevProps.text.toLowerCase() === nextProps.text.toLowerCase() // fine tuning
+  return prevProps.text.toLowerCase() === nextProps.text.toLowerCase() // fine tuning
 });
 
