@@ -1,0 +1,20 @@
+// src/features/counter/counterSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+
+export const counterSlice = createSlice({
+  name: 'counter', // A name for the slice
+  initialState: { value: 0 }, // The initial state
+  reducers: { // Functions to define how state can be updated
+    increment: (state) => {
+      // Redux Toolkit uses Immer to allow "mutating" logic that becomes immutable updates
+      state.value += 1;
+    },
+    decrement: (state) => {
+      state.value -= 1;
+    },
+  },
+});
+
+// Export the action creators and the reducer
+export const { increment, decrement } = counterSlice.actions;
+export default counterSlice.reducer;
