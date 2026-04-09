@@ -1,0 +1,5 @@
+const { value, toggle } = useToggle();
+
+<button onClick={toggle}>
+  {value ? "ON" : "OFF"}
+</button>
