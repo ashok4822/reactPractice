@@ -1,0 +1,26 @@
+import React, { useEffect, useState } from "react";
+
+const ScreenSizeComponent = () => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth); // triggers re-render
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return (
+    <div>
+      <h2>Screen Width: {width}px</h2>
+      {width < 768 ? <p>Mobile View</p> : <p>Desktop View</p>}
+    </div>
+  );
+};
+
+export default ScreenSizeComponent;
